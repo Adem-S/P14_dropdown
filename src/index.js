@@ -1,17 +1,46 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useState } from "react";
+import { render } from "react-dom";
+import { Dropdown } from "./lib";
+import arrow from "./lib/assets/arrow_icon.svg";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const App = () => {
+  const items = [
+    { name: "item 1", value: 1 },
+    { name: "item 2", value: 2 },
+    { name: "item 3", value: 3 },
+    { name: "item 4", value: 4 },
+    { name: "item 5", value: 5 },
+    { name: "item 6", value: 6 },
+    { name: "item 7", value: 7 },
+    { name: "item 8", value: 8 },
+    { name: "item 9", value: 9 },
+    { name: "item 10", value: 10 },
+  ];
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  const [value, setValue] = useState(items[0].value);
+
+  return (
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "10px",
+        fontFamily: "sans-serif",
+      }}
+    >
+      <h1>Dropdown</h1>
+      <Dropdown
+        items={items}
+        value={value}
+        onChange={setValue}
+        width="100px"
+        iconSrc={arrow}
+      />
+    </div>
+  );
+};
+
+render(<App />, document.getElementById("root"));
