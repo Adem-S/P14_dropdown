@@ -7,6 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
 require("./Dropdown.css");
+var _propTypes = _interopRequireDefault(require("prop-types"));
 var _arrow_icon = _interopRequireDefault(require("./assets/arrow_icon.svg"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
@@ -17,6 +18,15 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i.return && (_r = _i.return(), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+/**
+ * Dropdown component.
+ * @param {object[]} items - The array of items to display in the dropdown.
+ * @param {function} onChange - The callback function called when an item is selected.
+ * @param {string|number|boolean} value - The currently selected value.
+ * @param {string|number} [width="100%"] - The width of the dropdown.
+ * @param {string} [iconSrc=arrow] - The source of the dropdown icon.
+ * @returns {JSX.Element} The rendered dropdown component.
+ */
 var Dropdown = function Dropdown(_ref) {
   var _ref$items = _ref.items,
     items = _ref$items === void 0 ? [] : _ref$items,
@@ -36,9 +46,18 @@ var Dropdown = function Dropdown(_ref) {
     setOpenList = _useState4[1];
   var ref = (0, _react.useRef)();
   var listRef = (0, _react.useRef)();
+
+  /**
+   * Toggle the open state of the dropdown list.
+   */
   var toggleOpenList = function toggleOpenList() {
     setOpenList(!openList);
   };
+
+  /**
+   * Select an item from the dropdown.
+   * @param {object} item - The selected item.
+   */
   var selectItem = function selectItem(item) {
     onChange(item.value);
   };
@@ -69,11 +88,21 @@ var Dropdown = function Dropdown(_ref) {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [ref, openList]);
+
+  /**
+   * Handle click events outside of the dropdown.
+   * @param {MouseEvent} event - The click event.
+   */
   var handleClick = function handleClick(event) {
     if (ref.current && !ref.current.contains(event.target) && !event.target.closest(".dropdownOP-list")) {
       setOpenList(false);
     }
   };
+
+  /**
+   * Handle keydown events for keyboard navigation.
+   * @param {KeyboardEvent} event - The keydown event.
+   */
   var handleKeyDown = function handleKeyDown(event) {
     var _listRef$current2;
     event.preventDefault();
@@ -138,6 +167,16 @@ var Dropdown = function Dropdown(_ref) {
       alt: ""
     }));
   }))));
+};
+Dropdown.propTypes = {
+  items: _propTypes.default.arrayOf(_propTypes.default.shape({
+    name: _propTypes.default.string.isRequired,
+    value: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number, _propTypes.default.bool]).isRequired
+  })),
+  onChange: _propTypes.default.func.isRequired,
+  value: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number, _propTypes.default.bool]),
+  width: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number]),
+  iconSrc: _propTypes.default.string
 };
 var _default = Dropdown;
 exports.default = _default;

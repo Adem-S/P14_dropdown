@@ -1,0 +1,9 @@
+{
+    "source": {
+      "include": ["src/lib"],
+      "exclude": ["node_modules"]
+    },
+    "opts": {
+      "destination": "docs"
+    }
+  }

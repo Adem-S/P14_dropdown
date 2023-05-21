@@ -1,4 +1,4 @@
-# dropdown-op
+# adem-dropdown
 
 ## Getting started
 
@@ -8,13 +8,13 @@ Your project needs to use React
 
 ### Installation
 
-Add dropdown-op to your project by executing `npm install dropdown-op`
+Add adem-dropdown to your project by executing `npm install dropdown-op`
 
 ### Usage
 
 ```js
 import React, { useState } from "react";
-import { Dropdown } from "dropdown-op";
+import { Dropdown } from "adem-dropdown";
 
 function MyApp() {
   const [value, setValue] = useState(1);
