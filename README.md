@@ -8,7 +8,7 @@ Your project needs to use React
 
 ### Installation
 
-Add adem-dropdown to your project by executing `npm install dropdown-op`
+Add adem-dropdown to your project by executing `npm install adem-dropdown`
 
 ### Usage
 
